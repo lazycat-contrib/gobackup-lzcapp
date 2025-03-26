@@ -1,0 +1,28 @@
+lzc-sdk-version: "0.1"
+name: GoBackup
+package: cloud.lazycat.app.gobackup
+version: 2.14.0
+description: RubyChina开发的数据库、配置文件备份工具
+homepage: https://github.com/gobackup/gobackup
+author: rubychina
+application:
+  subdomain: gobackup
+  background_task: true
+  multi_instance: false
+  gpu_accel: false
+  kvm_accel: false
+  usb_accel: false
+  public_path:
+    - /
+  routes:
+    - /=http://gobackup:2703/
+services:
+  gobackup:
+    image: docker.hlmirror.com/huacnlee/gobackup:v2.14.0
+    network_mode: host
+    binds:
+      - /lzcapp/var/gobackup:/etc/gobackup
+    setup_script: |
+      if [ -z "$(find /etc/gobackup/gobackup.yml -mindepth 1 -maxdepth 1)" ]; then
+          cp  /lzcapp/pkg/content/gobackup.yml /etc/gobackup/gobackup.yml
+      fi

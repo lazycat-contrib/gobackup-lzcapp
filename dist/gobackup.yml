@@ -1,0 +1,20 @@
+web:
+  host: 0.0.0.0
+  #username: <your-name>
+  #password: <your-web-ui-password>
+models:
+  my_app:
+    compress_with:
+      type: tgz
+    storages:
+      local:
+        type: local
+        keep: 20
+        path: /root/backups
+    databases:
+      my_app:
+        database: my_app_production
+        type: mysql
+        host: localhost
+        port: 3306
+        username: root
