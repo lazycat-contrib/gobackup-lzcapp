@@ -15,7 +15,7 @@ application:
   public_path:
     - /
   routes:
-    - /=http://gobackup:2703/
+    - /=http://host.lzcapp:2703/
 services:
   gobackup:
     image: docker.hlmirror.com/huacnlee/gobackup:v2.14.0
@@ -23,6 +23,6 @@ services:
     binds:
       - /lzcapp/var/gobackup:/etc/gobackup
     setup_script: |
-      if [ -z "$(find /etc/gobackup/gobackup.yml -mindepth 1 -maxdepth 1)" ]; then
-          cp  /lzcapp/pkg/content/gobackup.yml /etc/gobackup/gobackup.yml
+      if ! [ -f /etc/gobackup/gobackup.yml ]; then
+        cp  /lzcapp/pkg/content/gobackup.yml /etc/gobackup/gobackup.yml
       fi
