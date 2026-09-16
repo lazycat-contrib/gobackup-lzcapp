@@ -1,0 +1,21 @@
+application:
+  subdomain: gobackup
+  background_task: true
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://host.lzcapp:2703/
+
+services:
+  gobackup:
+    # upstream: huacnlee/gobackup:v2.14.0
+    image: docker.1ms.run/huacnlee/gobackup:v2.14.0
+    network_mode: host
+    binds:
+      - /lzcapp/var/gobackup:/etc/gobackup
+    setup_script: |
+      if ! [ -f /etc/gobackup/gobackup.yml ]; then
+        cp  /lzcapp/pkg/content/gobackup.yml /etc/gobackup/gobackup.yml
+      fi
