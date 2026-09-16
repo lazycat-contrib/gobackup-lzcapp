@@ -7,11 +7,10 @@ application:
   upstreams:
     - location: /
       backend: http://host.lzcapp:2703/
-
 services:
   gobackup:
-    # upstream: huacnlee/gobackup:v2.14.0
-    image: docker.1ms.run/huacnlee/gobackup:v2.14.0
+    # upstream: huacnlee/gobackup:v3.1.1
+    image: docker.1ms.run/huacnlee/gobackup:v3.1.1
     network_mode: host
     binds:
       - /lzcapp/var/gobackup:/etc/gobackup

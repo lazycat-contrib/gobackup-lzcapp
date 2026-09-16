@@ -1,11 +1,10 @@
 package: cloud.lazycat.app.gobackup
-version: 2.14.0
+version: 3.1.1
 name: GoBackup
 description: "数据库、配置文件备份工具"
 min_os_version: "1.5.0"
 homepage: https://github.com/gobackup/gobackup
 author: rubychina
-
 locales:
   zh:
     name: GoBackup
